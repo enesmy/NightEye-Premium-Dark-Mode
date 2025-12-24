@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NightEye Premium</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="../icons/icon128.png" alt="Icon" class="icon">
+            <h1>NightEye Premium</h1>
+        </div>
+        <div class="content">
+            <div class="status-text" id="statusText">Dark Mode is OFF</div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+            </label>
+
+            <div class="slider-container" id="sliderContainer" style="display: none; margin-top: 20px; width: 100%;">
+                <div class="slider-label">
+                    <span>Light</span>
+                    <span>Darkness</span>
+                    <span>Deep</span>
+                </div>
+                <input type="range" id="darknessRange" min="50" max="100" value="75" style="width: 100%;">
+            </div>
+
+            <div class="schedule-container"
+                style="margin-top: 20px; width: 100%; border-top: 1px solid #333; padding-top: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span style="font-size: 12px; font-weight: 600; color: #aaa;">SCHEDULE MODE</span>
+                    <label class="switch" style="transform: scale(0.8);">
+                        <input type="checkbox" id="scheduleToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div id="timeInputs" style="display: none; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label for="startTime" style="font-size: 11px; color: #888;">START</label>
+                        <input type="time" id="startTime" value="20:00" class="time-input">
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label for="endTime" style="font-size: 11px; color: #888;">END</label>
+                        <input type="time" id="endTime" value="07:00" class="time-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-features"
+                style="margin-top: 20px; width: 100%; border-top: 1px solid #333; padding-top: 15px;">
+                <div style="margin-bottom: 15px;">
+                    <label for="themeSelect"
+                        style="font-size: 12px; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px;">THEME</label>
+                    <select id="themeSelect"
+                        style="width: 100%; background: #2a2a2a; color: #e0e0e0; border: 1px solid #444; padding: 5px; border-radius: 4px; outline: none;">
+                        <option value="default">Classic Black</option>
+                        <option value="midnight">Midnight Blue</option>
+                        <option value="forest">Deep Forest</option>
+                        <option value="cyberpunk">Cyberpunk</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; font-weight: 600; color: #aaa;">BLUE LIGHT FILTER</span>
+                    <label class="switch" style="transform: scale(0.8);">
+                        <input type="checkbox" id="blueLightToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button id="whitelistBtn"
+                style="margin-top: 20px; width: 100%; padding: 10px; background: #333; color: #aaa; border: 1px solid #444; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: 600; text-transform: uppercase; transition: 0.2s;">
+                Disable for this site
+            </button>
+        </div>
+        <div class="footer">
+            <p>♥ NightEye Premium</p>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>

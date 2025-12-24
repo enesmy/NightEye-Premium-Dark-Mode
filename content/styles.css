@@ -1,0 +1,94 @@
+/* Global Dark Mode Filter - Dynamic */
+html.sf-dark-mode {
+    /* Default values if JS doesn't set them */
+    --sf-contrast: 0.85;
+    --sf-brightness: 1.1;
+    --sf-hue-rotate: 180deg;
+    --sf-saturate: 1;
+
+    filter: invert(1) hue-rotate(var(--sf-hue-rotate)) contrast(var(--sf-contrast)) brightness(var(--sf-brightness)) saturate(var(--sf-saturate)) !important;
+}
+
+/* Themes */
+html.sf-dark-mode.sf-theme-midnight {
+    --sf-hue-rotate: 200deg;
+    /* Shift towards blue */
+    --sf-saturate: 1.1;
+}
+
+html.sf-dark-mode.sf-theme-forest {
+    --sf-hue-rotate: 140deg;
+    /* Shift towards green */
+    --sf-saturate: 0.9;
+}
+
+html.sf-dark-mode.sf-theme-cyberpunk {
+    --sf-hue-rotate: 280deg;
+    /* Shift towards purple/pink */
+    --sf-contrast: 1.1;
+    --sf-saturate: 1.2;
+}
+
+/* Theme Background Overlay */
+#sf-theme-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2147483646;
+    /* Just below blue light filter */
+    mix-blend-mode: screen;
+    /* Lightens the dark background */
+    display: block;
+}
+
+.sf-theme-midnight-overlay {
+    background-color: rgba(0, 20, 60, 0.3);
+    /* Deep Blue */
+}
+
+.sf-theme-forest-overlay {
+    background-color: rgba(0, 40, 10, 0.3);
+    /* Deep Green */
+}
+
+.sf-theme-cyberpunk-overlay {
+    background-color: rgba(60, 0, 60, 0.3);
+    /* Deep Purple */
+}
+
+/* Blue Light Filter Overlay */
+#sf-blue-light-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 140, 0, 0.2);
+    /* Warm orange, semi-transparent */
+    pointer-events: none;
+    /* Click-through */
+    z-index: 2147483647;
+    /* Max z-index to stay on top */
+    mix-blend-mode: multiply;
+    /* Blends nicely with content */
+    display: block;
+}
+
+/* Revert filter for media to keep them looking normal */
+/* We reverse the global filter: Brightness(inv) -> Contrast(inv) -> Hue(inv) -> Invert(inv) */
+html.sf-dark-mode img,
+html.sf-dark-mode video,
+html.sf-dark-mode picture,
+html.sf-dark-mode canvas,
+html.sf-dark-mode iframe,
+html.sf-dark-mode embed,
+html.sf-dark-mode object,
+html.sf-dark-mode [role="img"],
+html.sf-dark-mode [style*="background-image"],
+html.sf-dark-mode svg image {
+    /* Exact inverse math using calc */
+    filter: brightness(calc(1 / var(--sf-brightness))) contrast(calc(1 / var(--sf-contrast))) hue-rotate(calc(-1 * var(--sf-hue-rotate))) invert(1) !important;
+}
